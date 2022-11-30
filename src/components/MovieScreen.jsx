@@ -1,9 +1,10 @@
 import React from 'react'
+import MovieCard from './MovieCard'
 
-const MovieScreen = ({list, setPage, page, movieList}) => {
+const MovieScreen = ({list, setPage, page, movieList, addMovie}) => {
     // console.log(movieList)
     let movieDisplay = movieList.map((movie) => {
-        return <h2 key={Math.random()}>{movie.original_title}</h2>
+        return <MovieCard movie={movie} addMovie={addMovie} key={Math.random()} />
     })
 
     return (

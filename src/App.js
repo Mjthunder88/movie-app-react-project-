@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import "./App.css";
 import MovieScreen from "./components/MovieScreen";
+import WatchList from "./components/WatchList";
+
+
 function App() {
   const [movieList, setMovieList] = useState([]);
   const [watchList, setWatchList] = useState([]);
@@ -22,6 +25,11 @@ function App() {
     getData();
   }, [page]);
 
+
+  const addMovie = (movie) => {
+    setWatchList([...watchList, movie])
+  }
+
   return (
     <div className="App">
       <Header />
@@ -31,7 +39,9 @@ function App() {
           page={page}
           setPage={setPage}
           movieList={movieList}
+          addMovie={addMovie}
         />
+        <WatchList list={watchList} />
       </main>
     </div>
   );
