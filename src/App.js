@@ -15,7 +15,7 @@ function App() {
     axios
       .get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
       .then((response) => {
-        console.log(response.data.results);
+        // console.log(response.data.results);
         setMovieList(response.data.results)
       })
       .catch((error) => console.log(error));
@@ -30,6 +30,13 @@ function App() {
     setWatchList([...watchList, movie])
   }
 
+  const removeMovie = (movie) => {
+    let newState = watchList.filter( (item) => {
+      return item !== movie
+    })
+    setWatchList(newState)
+  }
+
   return (
     <div className="App">
       <Header />
@@ -40,8 +47,12 @@ function App() {
           setPage={setPage}
           movieList={movieList}
           addMovie={addMovie}
+          removeMovie={removeMovie}
         />
-        <WatchList list={watchList} />
+        <WatchList 
+        list={watchList}
+        removeMovie={removeMovie} 
+        />
       </main>
     </div>
   );

@@ -1,11 +1,16 @@
 import React from 'react'
 import MovieCard from './MovieCard'
 
-const WatchList = ({list}) => {
+const WatchList = ({list, removeMovie}) => {
     console.log("watchlist:", list)
 
     let movieDisplay = list.map((movie) => {
-        return <MovieCard movie={movie} key={Math.random()} />
+        return <MovieCard 
+        movie={movie} 
+        key={Math.random()}
+        removeMovie={removeMovie}
+        list={list}
+        />
     })
 
     return (
